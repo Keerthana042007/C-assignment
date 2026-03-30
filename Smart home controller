@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Device {
+protected:
+    string location;
+
+public:
+    void getDevice() {
+        cout << "Enter Device Location: ";
+        cin >> location;
+    }
+};
+
+// Derived class 1
+class Light : public Device {
+protected:
+    int brightness;
+
+public:
+    void getLight() {
+        cout << "Enter Brightness Level (1-100): ";
+        cin >> brightness;
+    }
+};
+
+// Derived class 2
+class Fan : public Device {
+protected:
+    int speed;
+
+public:
+    void getFan() {
+        cout << "Enter Fan Speed (1-5): ";
+        cin >> speed;
+    }
+};
+
+// Hybrid derived class
+class SmartController : public Light, public Fan {
+public:
+    void displayStatus() {
+        cout << "\n\n\nSmart Home Status\n" << endl;
+        cout << "Location: " << Light::location << endl;
+        cout << "Light Brightness: " << brightness << endl;
+        cout << "Fan Speed: " << speed << endl;
+    }
+};
+
+int main() {
+    SmartController sc;
+
+    sc.getDevice();   // from Device (via Light path)
+    sc.getLight();
+    sc.getFan();
+    sc.displayStatus();
+
+    return 0;
+}
