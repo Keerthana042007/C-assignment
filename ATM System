@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+// Level 1
+class Account {
+protected:
+    int accNo;
+    float balance;
+
+public:
+    void getAccount() {
+        cout << "Enter Account Number: ";
+        cin >> accNo;
+        cout << "Enter Initial Balance: ";
+        cin >> balance;
+    }
+};
+
+// Level 2
+class Transaction : public Account {
+protected:
+    float amount;
+
+public:
+    void deposit() {
+        cout << "Enter Amount to Deposit: ";
+        cin >> amount;
+        balance += amount;
+    }
+
+    void withdraw() {
+        cout << "Enter Amount to Withdraw: ";
+        cin >> amount;
+        if (amount <= balance)
+            balance -= amount;
+        else
+            cout << "Insufficient Balance!" << endl;
+    }
+};
+
+// Level 3
+class ATM : public Transaction {
+public:
+    void display() {
+        cout << "\n     ATM Details " << endl;
+        cout << "Account Number: " << accNo << endl;
+        cout << "Available Balance: Rs." << balance << endl;
+    }
+};
+
+int main() {
+    ATM a;
+    int choice;
+
+    a.getAccount();
+
+    cout << "\n1. Deposit\n2. Withdraw\nEnter choice: ";
+    cin >> choice;
+
+    if (choice == 1)
+        a.deposit();
+    else if (choice == 2)
+        a.withdraw();
+    else
+        cout << "Invalid choice!" << endl;
+
+    a.display();
+
+    return 0;
+}
