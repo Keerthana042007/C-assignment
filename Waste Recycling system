@@ -1,0 +1,52 @@
+
+#include <iostream>
+using namespace std;
+
+// Base class
+class Waste {
+protected:
+    int quantity;
+
+public:
+    Waste() { 
+        cout << "Waste System Started\n";   // Constructor
+    }
+
+    virtual void getData() {
+        cout << "Enter waste quantity (kg): ";
+        cin >> quantity;   // User input
+    }
+
+    virtual void process() {
+        cout << "Processing " << quantity << " kg of waste\n";
+    }
+
+    virtual ~Waste() { 
+        cout << "Waste System Closed\n";   // Destructor
+    }
+};
+
+// Derived class
+class Recycling : public Waste {
+public:
+    Recycling() { 
+        cout << "Recycling Unit Activated\n";
+    }
+
+    void process() {   // Function overriding
+        cout << "Recycling " << quantity << " kg of plastic waste ♻️\n";
+    }
+
+    ~Recycling() { 
+        cout << "Recycling Completed\n";
+    }
+};
+
+int main() {
+    Recycling r;
+
+    r.getData();    // Taking input from user
+    r.process();    // Calling overridden function
+
+    return 0;
+}    
