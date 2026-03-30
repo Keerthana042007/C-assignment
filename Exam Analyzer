@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Student {
+protected:
+    string name;
+    int regNo;
+
+public:
+    void getStudentDetails() {
+        cout << "Enter Name: ";
+        cin >> name;
+
+        cout << "Enter Register Number: ";
+        cin >> regNo;
+    }
+
+    void displayStudentDetails() {
+        cout << "Name: " << name << endl;
+        cout << "Register Number: " << regNo << endl;
+    }
+};
+
+// Derived class
+class ExamAnalyzer : public Student {
+private:
+    int marks[3];
+    float average;
+    char grade;
+
+public:
+    void getMarks() {
+        cout << "Enter marks for 3 subjects: ";
+        cin >> marks[0] >> marks[1] >> marks[2];
+    }
+
+    void analyzePerformance() {
+        int total = marks[0] + marks[1] + marks[2];
+        average = total / 3.0;
+
+        if (average >= 90)
+            grade = 'A';
+        else if (average >= 75)
+            grade = 'B';
+        else if (average >= 50)
+            grade = 'C';
+        else
+            grade = 'F';
+    }
+
+    void displayReport() {
+        cout << "\n=== Student Performance Report ===" << endl;
+        displayStudentDetails();
+        cout << "Marks: " << marks[0] << ", " << marks[1] << ", " << marks[2] << endl;
+        cout << "Average: " << average << endl;
+        cout << "Grade: " << grade << endl;
+    }
+};
+
+int main() {
+    ExamAnalyzer obj;
+
+    obj.getStudentDetails();
+    obj.getMarks();
+    obj.analyzePerformance();
+    obj.displayReport();
+
+    return 0;
+}
