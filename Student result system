@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Student {
+protected:
+    string name;
+    int marks;
+
+public:
+    Student() {
+        cout << "Student Record Created\n"; // Constructor
+    }
+
+    virtual void getData() {
+        cout << "Enter Name: ";
+        cin >> name;
+        cout << "Enter Marks: ";
+        cin >> marks;
+    }
+
+    virtual void display() {
+        cout << "Name: " << name << "\nMarks: " << marks << endl;
+    }
+
+    virtual ~Student() {
+        cout << "Student Record Deleted\n"; // Destructor
+    }
+};
+
+// Derived class
+class Result : public Student {
+public:
+    Result() {
+        cout << "Result Processing Started\n";
+    }
+
+    void display() { // Function overriding
+        cout << "Name: " << name << "\nMarks: " << marks;
+
+        if (marks >= 50)
+            cout << "\nResult: Pass\n";
+        else
+            cout << "\nResult: Fail\n";
+    }
+
+    ~Result() {
+        cout << "Result Processing Ended\n";
+    }
+};
+
+int main() {
+    Result r;
+
+    r.getData();   // User input
+    r.display();   // Overridden function
+
+    return 0;
+}
