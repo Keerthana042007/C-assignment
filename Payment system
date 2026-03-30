@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Payment {
+protected:
+    float amount;
+
+public:
+    void getAmount() {
+        cout << "Enter Amount: ";
+        cin >> amount;
+    }
+};
+
+// Derived class 1
+class UPI : public Payment {
+public:
+    void payUPI() {
+        cout << "Payment of Rs." << amount << " done via UPI" << endl;
+    }
+};
+
+// Derived class 2
+class Card : public Payment {
+public:
+    void payCard() {
+        cout << "Payment of Rs." << amount << " done via Card" << endl;
+    }
+};
+
+int main() {
+    UPI u;
+    Card c;
+
+    cout << "   UPI Payment " << endl;
+    u.getAmount();
+    u.payUPI();
+
+    cout << "\n   Card Payment " << endl;
+    c.getAmount();
+    c.payCard();
+
+    return 0;
+}
