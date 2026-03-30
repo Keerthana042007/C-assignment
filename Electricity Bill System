@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Electricity {
+protected:
+    string name;
+    int units;
+
+public:
+    Electricity() {
+        cout << "Electricity System Started\n"; // Constructor
+    }
+
+    virtual void getData() {
+        cout << "Enter Consumer Name: ";
+        cin >> name;
+        cout << "Enter Units Consumed: ";
+        cin >> units;
+    }
+
+    virtual void calculateBill() {
+        cout << "Calculating Basic Bill...\n";
+    }
+
+    virtual ~Electricity() {
+        cout << "Electricity System Closed\n"; // Destructor
+    }
+};
+
+// Derived class
+class Bill : public Electricity {
+private:
+    float amount;
+
+public:
+    Bill() {
+        cout << "Bill Generation Started\n";
+    }
+
+    void calculateBill() { // Function overriding
+        if (units <= 100)
+            amount = units * 2;
+        else if (units <= 200)
+            amount = units * 3;
+        else
+            amount = units * 5;
+
+        cout << "Consumer: " << name << endl;
+        cout << "Units: " << units << endl;
+        cout << "Total Bill: Rs." << amount << endl;
+    }
+
+    ~Bill() {
+        cout << "Bill Generated Successfully\n";
+    }
+};
+
+int main() {
+    Bill b;
+
+    b.getData();         // User input
+    b.calculateBill();   // Overridden function
+
+    return 0;
+}
