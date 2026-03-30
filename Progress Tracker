@@ -50,9 +50,9 @@ public:
         cout << "Progress: " << completedModules << "/" << totalModules << endl;
 
         if (completedModules == totalModules)
-            cout << "Status: Course Completed 🎉" << endl;
+            cout << "Status: Course Completed " << endl;
         else
-            cout << "Status: In Progress 📘" << endl;
+            cout << "Status: In Progress " << endl;
     }
 };
 
