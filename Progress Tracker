@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+// Level 1
+class Student {
+protected:
+    string name;
+    int regNo;
+
+public:
+    void getStudent() {
+        cout << "Enter Name: ";
+        cin >> name;
+        cout << "Enter Register Number: ";
+        cin >> regNo;
+    }
+};
+
+// Level 2
+class Course : public Student {
+protected:
+    string courseName;
+    int totalModules;
+
+public:
+    void getCourse() {
+        cout << "Enter Course Name: ";
+        cin >> courseName;
+        cout << "Enter Total Modules: ";
+        cin >> totalModules;
+    }
+};
+
+// Level 3
+class Progress : public Course {
+private:
+    int completedModules;
+
+public:
+    void getProgress() {
+        cout << "Enter Completed Modules: ";
+        cin >> completedModules;
+    }
+
+    void displayProgress() {
+        cout << "\n   Learning Progress Report " << endl;
+        cout << "Name: " << name << endl;
+        cout << "Register Number: " << regNo << endl;
+        cout << "Course: " << courseName << endl;
+        cout << "Progress: " << completedModules << "/" << totalModules << endl;
+
+        if (completedModules == totalModules)
+            cout << "Status: Course Completed 🎉" << endl;
+        else
+            cout << "Status: In Progress 📘" << endl;
+    }
+};
+
+int main() {
+    Progress p;
+
+    p.getStudent();
+    p.getCourse();
+    p.getProgress();
+    p.displayProgress();
+
+    return 0;
+}
