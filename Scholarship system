@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+// Base class 1
+class Academics {
+protected:
+    float marks;
+
+public:
+    void getMarks() {
+        cout << "Enter Academic Average Marks(out of 600): ";
+        cin >> marks;
+    }
+};
+
+// Base class 2
+class Sports {
+protected:
+    int sportsScore;
+
+public:
+    void getSportsScore() {
+        cout << "Enter Sports Score (out of 100): ";
+        cin >> sportsScore;
+    }
+};
+
+// Derived class
+class Scholarship : public Academics, public Sports {
+private:
+    string name;
+
+public:
+    void getName() {
+        cout << "Enter Student Name: ";
+        cin >> name;  
+    }
+
+    void checkEligibility() {
+        cout << "\nScholarship Report" << endl;
+        cout << "Name: " << name << endl;
+        cout << "Academic Marks: " << marks << endl;
+        cout << "Sports Score: " << sportsScore << endl;
+
+        if (marks >= 400  && sportsScore >= 70)
+            cout << "Scholarship: Full Scholarship" << endl;
+        else if (marks >= 70 && sportsScore >= 50)
+            cout << "Scholarship: Partial Scholarship" << endl;
+        else
+            cout << "Scholarship: Not Eligible" << endl;
+    }
+};
+
+int main() {
+    Scholarship s;
+
+    s.getName();
+    s.getMarks();
+    s.getSportsScore();
+    s.checkEligibility();
+
+    return 0;
+}
